@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question Game</title>
+</head>
+<body>
+    <script type="text/javascript">
+    
+    var questionObjects = [
+    {q: "Is the sky blue?", a: "yes"},
+    {q: "What shape is a tire?", a: "circle"},
+    {q: "What color is an apple?", a: "red"},
+    {q: "Do squirrels climb trees?", a: "yes"},
+    {q: "Do fish swim?", a: "yes"},
+    {q: "What color is the ocean?", a: "blue"},
+    {q: "What color is the grass?", a: "green"},
+    {q: "Do you like pina coladas?", a: "yes"},
+    {q: "What part of the body does a dentist work on?", a: "mouth"},
+    {q: "What topic of coding are we learning about now?", a: "javascript"}
+    ]
+
+    for (var i = 0; i < questionObjects.length; i ++) {
+        var userAnswer = confirm(questionObjects[i].q);
+        if (userAnswer === questionObjects[i].a) {
+
+        }
+    }
+
+    
+    
+    
+    </script>
+
+</body>
+</html>
