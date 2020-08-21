@@ -1,4 +1,5 @@
 var mysql = require("mysql");
+var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
   host: "localhost",
@@ -10,7 +11,7 @@ var connection = mysql.createConnection({
   user: "root",
 
   // Your password
-  password: "1noCharlie!",
+  password: process.env.MYSQL_KEY,
   database: "greatBay_db"
 });
 
