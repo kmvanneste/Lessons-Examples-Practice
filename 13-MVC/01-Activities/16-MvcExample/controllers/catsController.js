@@ -1,5 +1,6 @@
 var express = require("express");
 
+//in Express there is a router object
 var router = express.Router();
 
 // Import the model (cat.js) to use its database functions.

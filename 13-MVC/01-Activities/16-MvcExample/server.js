@@ -17,9 +17,14 @@ var exphbs = require("express-handlebars");
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
+//ANOTHER OPTION
+//app.engine("handlebars", exphbs({ defaultLayout: "main", extname: ".hbs" }));
+//app.set("view engine", "hbs");
+
 // Import routes and give the server access to them.
 var routes = require("./controllers/catsController.js");
 
+//Middleware, we ask express to use and import the controller
 app.use(routes);
 
 app.listen(PORT, function() {

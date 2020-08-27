@@ -16,3 +16,7 @@ var anythingGoes = function(functionOne, functionTwo, functionThree) {
 
 // Challenge: what does this return?
 anythingGoes(multiply, subtract, sum);
+
+//ANSWER:
+//(3*4) + (7-2)
+//17

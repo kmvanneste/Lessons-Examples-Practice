@@ -16,3 +16,5 @@ var anythingGoes = function(functionOne, functionTwo, functionThree) {
 
 // Challenge: what does this return?
 anythingGoes(multiply, subtract, sum);
+
+//THIS ONE HAS THE *RETURN* IN THE ANYTHING GOES FUNCTION
