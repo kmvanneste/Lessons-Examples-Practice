@@ -14,6 +14,8 @@
 
       // Create an object store inside the onupgradeneeded method.
       request.onupgradeneeded = ({ target }) => {
+        console.log("event", event);
+        //const target = event.target;
         const db = target.result;
         const objectStore = db.createObjectStore("toDoList");
       };

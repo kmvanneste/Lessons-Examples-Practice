@@ -13,4 +13,9 @@
 <script>
 
 // CODE HERE
+  const request = indexedDB.open("kristenDB", 1);
+  request.onsuccess = event => {
+    console.log(request.result.name);
+  };
+
 </script>

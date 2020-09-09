@@ -10,6 +10,18 @@
     <h1>Open Your Developer Tools > Application > IndexedDB</h1>
     <script>
     // CODE HERE
+    const request = indexedDB.open("KristenDB", 1);
+
+    request.onupgradeneeded = ({target}) => {
+      console.log("event", event);
+
+      const db = target.result;
+      const objectStore = db.createObjectStore("KristenDB0")
+    };
+
+    request.onsuccess = event => {
+      console.log(event.target.result);
+    }
     </script>
   </body>
 </html>
