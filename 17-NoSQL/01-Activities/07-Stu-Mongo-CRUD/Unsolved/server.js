@@ -31,10 +31,29 @@ app.get("/", (req, res) => {
 // 1. Save a note to the database's collection
 // POST: /submit
 // ===========================================
+app.post("/submit", (req, res) => {
+  console.log(req.body);
+  db.notes.insert(req.body, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
 
 // 2. Retrieve all notes from the database's collection
 // GET: /all
 // ====================================================
+app.get("/all", (req, res) => {
+  db.notes.find({}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
 
 // 3. Retrieve one note in the database's collection by it's ObjectId
 // TIP: when searching by an id, the id needs to be passed in
@@ -42,10 +61,30 @@ app.get("/", (req, res) => {
 // GET: /find/:id
 // ==================================================================
 
+app.get("/find/:id", (req, res) => {
+  db.notes.find({_id: mongojs.ObjectId(req.params.id)}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
+
 // 4. Update one note in the database's collection by it's ObjectId
 // (remember, mongojs.ObjectId(IdYouWantToFind)
 // POST: /update/:id
 // ================================================================
+
+app.get("/update/:id", (req, res) => {
+  db.notes.update({_id: mongojs.ObjectId(req.params.id)}, (err, data) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.json(data);
+    }
+  });
+});
 
 // 5. Delete one note from the database's collection by it's ObjectId
 // (remember, mongojs.ObjectId(IdYouWantToFind)
