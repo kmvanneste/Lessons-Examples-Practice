@@ -1,8 +1,11 @@
 let db;
 // create a new db request for a "budget" database.
+const request = window.indexedDB.open("upgrade", 1);
 
 request.onupgradeneeded = function(event) {
   // create object store called "pending" and set autoIncrement to true
+  const db = event.target.result;
+  db.createObjectStore("pending", { autoIncrement: true });
 };
 
 request.onsuccess = function(event) {
@@ -15,12 +18,16 @@ request.onsuccess = function(event) {
 
 request.onerror = function(event) {
   // log error here
+  console.log("Woops! " + event.target.errorCode);
 };
 
 function saveRecord(record) {
   // create a transaction on the pending db with readwrite access
+  const transaction = db.transaction(["pending"], "readwrite");
   // access your pending object store
+  const transactionStore = transaction.objectStore("pending");
   // add record to your store with add method.
+  transactionStore.add(record);
 }
 
 function checkDatabase() {
