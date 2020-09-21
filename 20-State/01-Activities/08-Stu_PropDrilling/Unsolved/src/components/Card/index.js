@@ -11,8 +11,12 @@ function Card(props) {
   */
   return (
     <div>
-      <CardHeading />
-      <CardImg  />
+      <CardHeading 
+        title={props.title}
+      />
+      <CardImg  
+        
+      />
       <CardBody  />
       {!props.image && <i className="fa fa-spinner fa-spin" aria-hidden="true" />}
       <CardBtn

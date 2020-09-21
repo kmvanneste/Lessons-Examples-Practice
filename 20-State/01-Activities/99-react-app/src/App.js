@@ -8,8 +8,6 @@ import Wrapper from "./components/Wrapper";
 import "./App.css";
 
 function App() {
-  
-
   document.title = "Wikipedia Searcher";
   return (
     <Router>

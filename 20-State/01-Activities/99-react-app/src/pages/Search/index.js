@@ -1,26 +1,17 @@
 import React, { useState, useEffect } from "react";
+import API from "../../utils/API";
 import Container from "../../components/Container";
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
 import Alert from "../../components/Alert";
-import API from "../../utils/API";
-import ArticleContext from "../../utils/useState";
 
 function Search() {
   const [search, setSearch] = useState("Wikipedia");
-  // const [title, setTitle] = useState("");
-  // const [url, setUrl] = useState("");
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
   const [error, setError] = useState("");
 
-  const [articleState, setArticleState] = useState({
-      title:"",
-      url: "",
-  });
-
-  // When the component mounts, update the title to be Wikipedia Searcher
   useEffect(() => {
-    document.title = "Wikipedia Searcher";
-
     if (!search) {
       return;
     }
@@ -33,10 +24,7 @@ function Search() {
         if (res.data.status === "error") {
           throw new Error(res.data.message);
         }
-        setArticleState({
-          title: res.data[1][0],
-          url: res.data[3][0],
-        });
+        setTitle(res.data[1][0]);
         setUrl(res.data[3][0]);
       })
       .catch(err => setError(err));
@@ -46,11 +34,7 @@ function Search() {
     setSearch(event.target.value);
   };
 
-  const handleFormSubmit = event => {
-    event.preventDefault();
-  };
   return (
-    <ArticleContext.Provider value={articleState}>
     <div>
       <Container style={{ minHeight: "100vh" }}>
         <h1 className="text-center">Search For Anything on Wikipedia</h1>
@@ -58,14 +42,12 @@ function Search() {
           {error}
         </Alert>
         <SearchForm
-          handleFormSubmit={handleFormSubmit}
           handleInputChange={handleInputChange}
           results={search}
         />
-        <SearchResults title={articleState.title} url={articleState.url} />
+        <SearchResults title={title} url={url} />
       </Container>
     </div>
-    </ArticleContext.Provider>
   );
 }
 
