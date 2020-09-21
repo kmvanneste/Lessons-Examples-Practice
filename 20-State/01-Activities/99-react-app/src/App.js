@@ -1,27 +1,39 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Signup from "./pages/Signup";
-import Search from "./pages/Search";
-import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
-import Wrapper from "./components/Wrapper";
+import React, { useReducer, useRef } from "react";
 import "./App.css";
+import Form from "/components/Form/form.js";
+import ToDoList from "component/List/list.js";
 
 function App() {
-  document.title = "Wikipedia Searcher";
+  const inputRef = useRef();
+  const [items, dispatch] = useReducer((state, action) => {
+    switch (action.type) {
+    case "add":
+      return [
+        ...state,
+        {
+          id: state.length * Math.random(),
+          name: action.name
+        }
+      ];
+      // Bonus: Remove a todo from the list.
+    case "remove":
+      return state.filter((_, index) => {
+        return index !== action.index;
+      });
+    default:
+      return state;
+    }
+  }, []);
+  
+
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Wrapper>
-          <Route exact path="/" component={Search} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/search" component={Search} />
-        </Wrapper>
-        <Footer />
-      </div>
-    </Router>
+    <div className="container text-center">
+      <h1>Create a Todo List!</h1>
+      <Form />
+      <h4>My Todo List:</h4>
+      <ToDoList />
+    </div>
   );
 }
 
-export default App;
+export default TodoList;
